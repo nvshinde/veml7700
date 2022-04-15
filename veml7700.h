@@ -22,62 +22,48 @@
 
 #define VEML7700_ADDR           0x10
 
-/**
- * @brief Macros for command code of command registers
- */
-#define VEML7700_ALS_CONF_0     0x00
-#define VEML7700_ALS_WH         0x01
-#define VEML7700_ALS_WL         0x02
-#define VEML7700_PWR_SAVE       0x03
-#define VEML7700_ALS_DATA       0x04
-#define VEML7700_WHITE_DATA     0x05
-#define VEML7700_ALS_INT_DATA   0x06
+#define VEML7700_ALS_CONF_0     0x00 ///> ALS configuration register command code
+#define VEML7700_ALS_WH         0x01 ///> High threshold window setting command code
+#define VEML7700_ALS_WL         0x02 ///> Low threshold window setting command code
+#define VEML7700_PWR_SAVE       0x03 ///> Power saving modes command code
+#define VEML7700_ALS_DATA       0x04 ///> ALS Data command code
+#define VEML7700_WHITE_DATA     0x05 ///> White channel output data command code
+#define VEML7700_ALS_INT_DATA   0x06 ///> Interrupt status command code
 
-/**
- * @brief Macros for ALS Configuration register
- */
-#define VEML7700_ALS_GAIN_1     0x00 // ALS gain x 1
-#define VEML7700_ALS_GAIN_2     0x01 // ALS gain x 2
-#define VEML7700_ALS_GAIN_1_8   0x02 // ALS gain x 1/8
-#define VEML7700_ALS_GAIN_1_4   0x03 // ALS gain x 1/4
+#define VEML7700_ALS_GAIN_1     0x00 ///> ALS gain x 1
+#define VEML7700_ALS_GAIN_2     0x01 ///> ALS gain x 2
+#define VEML7700_ALS_GAIN_1_8   0x02 ///> ALS gain x 1/8
+#define VEML7700_ALS_GAIN_1_4   0x03 ///> ALS gain x 1/4
 
-#define VEML7700_ALS_IT_25      0x0C // ALS IT 25 ms
-#define VEML7700_ALS_IT_50      0x08 // ALS IT 50 ms
-#define VEML7700_ALS_IT_100     0x00 // ALS IT 100 ms
-#define VEML7700_ALS_IT_200     0x01 // ALS IT 200 ms
-#define VEML7700_ALS_IT_400     0x02 // ALS IT 400 ms
-#define VEML7700_ALS_IT_800     0x03 // ALS IT 800 ms
+#define VEML7700_ALS_IT_25      0x0C ///> ALS IT 25 ms
+#define VEML7700_ALS_IT_50      0x08 ///> ALS IT 50 ms
+#define VEML7700_ALS_IT_100     0x00 ///> ALS IT 100 ms
+#define VEML7700_ALS_IT_200     0x01 ///> ALS IT 200 ms
+#define VEML7700_ALS_IT_400     0x02 ///> ALS IT 400 ms
+#define VEML7700_ALS_IT_800     0x03 ///> ALS IT 800 ms
 
-#define VEML7700_ALS_PERS_1     0x00 // ALS PERS 1
-#define VEML7700_ALS_PERS_2     0x01 // ALS PERS 2
-#define VEML7700_ALS_PERS_4     0x02 // ALS PERS 4
-#define VEML7700_ALS_PERS_8     0x03 // ALS PERS 8
+#define VEML7700_ALS_PERS_1     0x00 ///> ALS PERS 1
+#define VEML7700_ALS_PERS_2     0x01 ///> ALS PERS 2
+#define VEML7700_ALS_PERS_4     0x02 ///> ALS PERS 4
+#define VEML7700_ALS_PERS_8     0x03 ///> ALS PERS 8
 
-#define VEML7700_ALS_INT_D      0x00 // ALS INT disable
-#define VEML7700_ALS_INT_E      0x01 // ALS INT enable
-#define VEML7700_ALS_SD_ON      0x00 // ALS power on
-#define VEML7700_ALS_SD_OFF     0x01 // ALS shut down
+#define VEML7700_ALS_INT_D      0x00 ///> ALS INT disable
+#define VEML7700_ALS_INT_E      0x01 ///> ALS INT enable
+#define VEML7700_ALS_SD_ON      0x00 ///> ALS power on
+#define VEML7700_ALS_SD_OFF     0x01 ///> ALS shut down
 
-/**
- * @brief High, low threshold windows setting. Not used
- */
-#define VEML7700_ALS_WH_VAL     0x0000 // High threshold windows setting
-#define VEML7700_ALS_WL_VAL     0x0000 // Low threshold windows setting
+#define VEML7700_ALS_WH_VAL     0x0000 ///> High threshold windows setting
+#define VEML7700_ALS_WL_VAL     0x0000 ///> Low threshold windows setting
 
-/**
- * @brief Power saving modes, enable setting
- */
-#define VEML7700_PSM_1          0x00 // Mode 1
-#define VEML7700_PSM_2          0x01 // Mode 2
-#define VEML7700_PSM_3          0x02 // Mode 3
-#define VEML7700_PSM_4          0x03 // Mode 4
+#define VEML7700_PSM_1          0x00 ///> Mode 1
+#define VEML7700_PSM_2          0x01 ///> Mode 2
+#define VEML7700_PSM_3          0x02 ///> Mode 3
+#define VEML7700_PSM_4          0x03 ///> Mode 4
 
-#define VEML7700_PSM_DISABLE    0x00 // Disable PSM
-#define VEML7700_PSM_ENABLE     0x01 // Enable PSM
+#define VEML7700_PSM_DISABLE    0x00 ///> Disable PSM
+#define VEML7700_PSM_ENABLE     0x01 ///> Enable PSM
 
-/**
- * @brief Struct containing sensor's fd and address
- */
+
 typedef struct veml7700{
     int fd;
     unsigned char addr;
