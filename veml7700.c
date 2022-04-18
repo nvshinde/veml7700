@@ -104,3 +104,53 @@ uint16_t vemlRead(veml7700* alsDev, unsigned char commandCode){
 
     return data[1]*256 + data[0];
 };
+
+int veml7700Enable(veml7700* alsDev){
+    vemlWrite(alsDev, VEML7700_ALS_CONF_0, VEML7700_ALS_SD_ON, 0x00);
+    usleep(5*1000); // Sleep 5ms
+    
+    return 0;
+}
+
+int veml7700Disable(veml7700* alsDev){
+    vemlWrite(alsDev, VEML7700_ALS_CONF_0, VEML7700_ALS_SD_OFF, 0x00);
+
+    return 0;
+}
+
+uint16_t veml7700Config(veml7700* alsDev, unsigned char gain, unsigned char intTime, unsigned char pers, unsigned char intEn){
+    uint16_t word;
+    uint8_t lsb, msb;
+
+    word = 0x0000 | (gain << 11) | (intTime << 6) | (pers << 4) | (intEn << 1);
+    lsb = word & 0xFF;
+    msb = word >> 8;
+    vemlWrite(alsDev, VEML7700_ALS_CONF_0, lsb, msb);
+
+    return word;
+}
+
+__uint16_t veml7700SetPSM(unsigned char psmMode, unsigned char psmEnable){
+    uint16_t word = 0x0000;
+
+    word = word | (psmMode << 1);
+    word = word | psmEnable;
+
+    return word;
+}
+
+/**
+// can be done directly
+
+uint16_t veml7700ReadALS(){
+    
+}
+
+uint16_t veml7700ReadWhite(){
+
+}
+
+uint16_t veml7700CheckInterrupt(){
+
+}
+**/

@@ -55,15 +55,17 @@
 #define VEML7700_ALS_WH_VAL     0x0000 ///> High threshold windows setting
 #define VEML7700_ALS_WL_VAL     0x0000 ///> Low threshold windows setting
 
-#define VEML7700_PSM_1          0x00 ///> Mode 1
-#define VEML7700_PSM_2          0x01 ///> Mode 2
-#define VEML7700_PSM_3          0x02 ///> Mode 3
-#define VEML7700_PSM_4          0x03 ///> Mode 4
+#define VEML7700_PSM_1          0x00 ///> PSM Mode 1
+#define VEML7700_PSM_2          0x01 ///> PSM Mode 2
+#define VEML7700_PSM_3          0x02 ///> PSM Mode 3
+#define VEML7700_PSM_4          0x03 ///> PSM Mode 4
 
 #define VEML7700_PSM_DISABLE    0x00 ///> Disable PSM
 #define VEML7700_PSM_ENABLE     0x01 ///> Enable PSM
 
-
+/**
+ * @brief Struct containing sensor's fd and address
+ */
 typedef struct veml7700{
     int fd;
     unsigned char addr;
@@ -107,20 +109,76 @@ int vemlWrite(veml7700* alsDev, unsigned char commandCode, unsigned char LSB, un
  */
 uint16_t vemlRead(veml7700* alsDev, unsigned char commandCode);
 
-int veml7700Enable(int enable);
+/**
+ * @brief Enables the sensor
+ * 
+ * @param alsDev pointer to struct used to initialise the sensor
+ * @return 0 
+ */
+int veml7700Enable(veml7700* alsDev);
 
-int veml7700Disable(int disable);
+/**
+ * @brief Disables the sensor
+ * 
+ * @param alsDev Pointer to struct used to initialise the sensor
+ * @return 0
+ */
+int veml7700Disable(veml7700* alsDev);
 
+/**
+ * @brief Configure the sensor
+ * 
+ * @param alsDev Pointer to struct used to initialise the sensor
+ * @param gain Required ALS gain. e.g. VEML7700_ALS_GAIN_1
+ * @param intTime Required integration time e.g. VEML7700_ALS_IT_25
+ * @param pers ALS persistence protect number setting e.g. VEML7700_ALS_PERS_1
+ * @param intEn ALS interrupt enable setting e.g. VEML7700_ALS_INT_D for disable
+ * @return uint16_t. The data sent to the sensor
+ */
+uint16_t veml7700Config(veml7700* alsDev, unsigned char gain, unsigned char intTime, unsigned char pers, unsigned char intEn); 
+
+/**
+ * @brief Not used
+ * 
+ * @return int 
+ */
 int veml7700SetGain();
 
+/**
+ * @brief Not used
+ * 
+ * @return int 
+ */
 int veml7700GetGain();
 
-int veml7700SetPSM();
+/**
+ * @brief Write the power saving modes for the sensor
+ * 
+ * @param psmMode e.g. VEML7700_PSM_1
+ * @param psmEnable e.g. VEML7700_PSM_ENABLE to enable
+ * @return uint16_t. Written word 
+ */
+uint16_t veml7700SetPSM(unsigned char psmMode, unsigned char psmEnable);
 
+/**
+ * @brief Unused
+ * 
+ * @return uint16_t 
+ */
 uint16_t veml7700ReadALS();
 
+/**
+ * @brief Unused
+ * 
+ * @return uint16_t 
+ */
 uint16_t veml7700ReadWhite();
 
+/**
+ * @brief Unused
+ * 
+ * @return uint16_t 
+ */
 uint16_t veml7700CheckInterrupt();
 
 #endif // __VEML7700_H__
